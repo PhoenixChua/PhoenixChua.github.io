@@ -1,7 +1,3 @@
-function JavascriptTest() {
-	document.write("Javascript Test!");
-}
-
 window.onload = function(){
       var val = localStorage.getItem('value');
 
