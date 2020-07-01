@@ -2,8 +2,15 @@ function JavascriptTest() {
 	document.write("Javascript Test!");
 }
 
-function SessionStorageTest() {
+window.onload = function(){
+      var val = localStorage.getItem('value');
+
+      if(val == null)
+          val = "First try";
+
+     document.getElementById("testinput").value = val;
 }
 
-function SessionStorageTestGet() {
+window.onbeforeunload = function(){
+    localStorage.setItem('value', document.getElementById("testinput").value);
 }
