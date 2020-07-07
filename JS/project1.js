@@ -30,7 +30,13 @@ function ResizeGameWindow() {
 	
 	var context = GameWindow.object.getContext("2d");
 	context.fillStyle = "black";
-	context.fillRect(0, 0, GameWindow.object.width, GameWindow.object.height);	
+	context.fillRect(0, 0, GameWindow.object.width, GameWindow.object.height);
+
+	testdraw = new Image();
+	testdraw.src = "Resources/test.png"; 
+	testdraw.onload = function() {
+		context.drawImage(testdraw,0,0);
+	};
 }
 
 window.addEventListener("resize", ResizeGameWindow);
