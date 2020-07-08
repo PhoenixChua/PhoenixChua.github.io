@@ -2,7 +2,7 @@
 var Game = 
 {
 	object: null,	
-	w:1280,
+	w:1200,
 	h: 800,
 	time: 0,
 	sprites: null
@@ -55,7 +55,14 @@ function Draw() {
 	context.fillStyle = "red";
 	context.fillText(Game.time, 10, 50);	
 
-	context.drawImage(Game.sprites,0,0);
+	context.drawImage(Game.sprites,200,0);
+	context.drawImage(Game.sprites,200,100);
+	context.drawImage(Game.sprites,200,200);
+	context.drawImage(Game.sprites,200,300);
+	context.drawImage(Game.sprites,200,400);
+	context.drawImage(Game.sprites,200,500);
+	context.drawImage(Game.sprites,200,600);
+	context.drawImage(Game.sprites,200,700);
 }
 
 function Loop(newtime) {
