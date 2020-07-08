@@ -11,6 +11,8 @@ var Game =
 // Automatically resizes the canvas to fit browser size.
 function ResizeGameWindow() {	
 	// New width and height based on the dimensions of the browser.
+	Game.object.width = Game.w;
+	Game.object.height = Game.h;
 	var w, h;
 	if (Game.h / Game.w > window.innerHeight / window.innerWidth) 
 	{
@@ -53,8 +55,7 @@ function Draw() {
 	context.fillStyle = "red";
 	context.fillText(Game.time, 10, 50);	
 
-	context.drawImage(Game.sprites,0,0,100,100);
-	
+	context.drawImage(Game.sprites,0,0);
 }
 
 function Loop(newtime) {
