@@ -8,44 +8,25 @@ var Game =
 	sprites: null
 }
 
-// Automatically resizes the canvas to fit browser size.
-function ResizeGameWindow() {	
-	// New width and height based on the dimensions of the browser.
-	Game.object.width = Game.w;
-	Game.object.height = Game.h;
-	var w, h;
-	if (Game.h / Game.w > window.innerHeight / window.innerWidth) 
-	{
-		h = window.innerHeight;
-		w = h * Game.w / Game.h;
-	} 
-	else {
-		w = window.innerWidth;
-		h = w * Game.h / Game.w;
-	}
-	
-	// Modify CSS based on the calculation.
-	Game.object.style.width = w + "px";
-    Game.object.style.height = h + "px";
-	
-	offsetX = (window.innerWidth - w) / 2;
-    offsetY = (window.innerHeight - h) / 2;
-	
-	Game.object.style.margin = offsetY + "px " + offsetX + "px";
-	
-	var context = Game.object.getContext("2d");
-}
-
-//###Graphics###
-function Graphics_Init() 
-{	
-	Game.sprites = new Image();
-	Game.sprites.src = "Resources/test.png"; 
-}
-
-//###Audio###
-
 //###Main###
+function Loop(newtime) {
+	Update(newtime - Game.time);
+	Draw();
+	Game.time = newtime;
+	window.requestAnimationFrame(Loop)
+}
+
+function Init() {
+	Game.object = document.getElementById('GameWindow');
+	Graphics_Init();
+	ResizeGameWindow();
+	window.addEventListener("resize", ResizeGameWindow);
+	window.requestAnimationFrame(Loop);
+}
+
+function Update(dt) {
+}
+
 function Draw() {
 	var context = Game.object.getContext("2d");
 	context.clearRect(0, 0, Game.object.width, Game.object.height);
@@ -63,25 +44,7 @@ function Draw() {
 	context.drawImage(Game.sprites,200,500);
 	context.drawImage(Game.sprites,200,600);
 	context.drawImage(Game.sprites,200,700);
-}
-
-function Loop(newtime) {
-	Update(newtime - Game.time);
-	Draw();
-	Game.time = newtime;
-	window.requestAnimationFrame(Loop)
-}
-
-function Update(dt) {
-}
-
-
-function Init() {
-	Game.object = document.getElementById('GameWindow');
-	Graphics_Init();
-	ResizeGameWindow();
-	window.addEventListener("resize", ResizeGameWindow);
-	window.requestAnimationFrame(Loop);
+	context.drawImage(Game.sprites,300,700);
 }
 
 window.addEventListener("load",Init);
