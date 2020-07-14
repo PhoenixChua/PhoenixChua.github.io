@@ -2,7 +2,7 @@ window.onload = function(){
       var val = localStorage.getItem('value');
 
       if(val == null)
-          val = "First try";
+          val = " ";
 
      document.getElementById("testinput").value = val;
 }
