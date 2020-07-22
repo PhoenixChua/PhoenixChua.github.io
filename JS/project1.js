@@ -49,7 +49,7 @@ class GameObject
 	{
 		for (var i = 0; i < this.components.length; i++) 
 		{
-			if(this.components[i].constructor.name == component)
+			if(this.components[i].constructor.name == component.prototype.constructor.name)
 				return this.components[i];
 		}
 		return null;
@@ -72,8 +72,8 @@ function Init()
 	Game.levels.init();
 	Game.levels.objects.push(new GameObject(0,0));
 	Game.levels.player = Game.levels.objects[0];
-	Game.levels.player.addComponent(new Component_Sprite("It works"));
-	var TestComponent = Game.levels.player.getComponent("Component_Sprite");
+	Game.levels.player.addComponent(new Component_Sprite("Yay"));
+	var TestComponent = Game.levels.player.getComponent(Component_Sprite);
 	alert(TestComponent.sprite);
 	ResizeGameWindow();
 	window.addEventListener("resize", ResizeGameWindow);
