@@ -12,10 +12,48 @@ var Game =
 	levels: 
 	{
 		id: null,
-		objects: []
+		objects: [],
+		player: null
 	},	
-	data: null,
+	data:
+	{
+		archetypes: []
+	},
 	audio: null,
+}
+
+//###Component-based game object class###
+class GameObject 
+{
+	constructor(x, y) 
+	{
+		this.x = x;
+		this.y = y;
+		this.components = [];
+	}
+	
+	addComponent(component) 
+	{
+		this.components.push(component);
+	}
+	
+	debugComponents()
+	{
+		for (var i = 0; i < this.components.length; i++) 
+		{
+			alert(this.components[i].constructor.name);
+		}
+	}
+	
+	getComponent(component)
+	{
+		for (var i = 0; i < this.components.length; i++) 
+		{
+			if(this.components[i].constructor.name == component)
+				return this.components[i];
+		}
+		return null;
+	}
 }
 
 //###Main###
@@ -32,6 +70,11 @@ function Init()
 	Game.object = document.getElementById('GameWindow');	
 	Game.graphics.init();
 	Game.levels.init();
+	Game.levels.objects.push(new GameObject(0,0));
+	Game.levels.player = Game.levels.objects[0];
+	Game.levels.player.addComponent(new Component_Sprite("It works"));
+	var TestComponent = Game.levels.player.getComponent("Component_Sprite");
+	alert(TestComponent.sprite);
 	ResizeGameWindow();
 	window.addEventListener("resize", ResizeGameWindow);
 	window.requestAnimationFrame(Loop);
@@ -105,4 +148,5 @@ function ResizeGameWindow()
 	Game.object.style.margin = offsetY + "px " + offsetX + "px";
 }
 
+// Start everything off!
 window.addEventListener("load", Init);
