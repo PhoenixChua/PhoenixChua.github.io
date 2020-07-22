@@ -1,0 +1,3 @@
+Game.levels.init = function() 
+{	
+}

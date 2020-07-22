@@ -9,9 +9,13 @@ var Game =
 	{
 		sprites: []
 	},
+	levels: 
+	{
+		id: null,
+		objects: []
+	},	
 	data: null,
 	audio: null,
-	gameobjects: null
 }
 
 //###Main###
@@ -27,6 +31,7 @@ function Init()
 {
 	Game.object = document.getElementById('GameWindow');	
 	Game.graphics.init();
+	Game.levels.init();
 	ResizeGameWindow();
 	window.addEventListener("resize", ResizeGameWindow);
 	window.requestAnimationFrame(Loop);

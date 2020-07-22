@@ -5,8 +5,11 @@ window.onload = function(){
         val = " ";
 
     document.getElementById("testinput").value = val;
-	 
+	
+	// Set up fade in/fade out effects by hiding all inactive content tabs.
 	var contentDivs = document.getElementsByClassName("SiteContent")[0].children;
+	
+	// Start hiding divs from index 1 since the index 0 div is homepage content.
 	for (var i = 1; i < contentDivs.length; i++) 
 	{
 		contentDivs[i].style.visibility = "hidden";
@@ -15,7 +18,7 @@ window.onload = function(){
 	contentDivs[0].style.transition = "all 1.5s";
 	contentDivs[0].style.MozTransition = "all 1.5s";
 	 
-	// Navigation bar link highlighting.
+	// Navigation bar link highlighting and fade in/fade out.
 	var links = document.getElementsByClassName("link");	 
 	for (var i = 0; i < links.length; i++) 
 	{
