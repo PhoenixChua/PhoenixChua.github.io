@@ -17,7 +17,7 @@ var Game =
 	},	
 	data:
 	{
-		archetypes: []
+		archetypes: {}
 	},
 	audio: null,
 }
@@ -25,10 +25,11 @@ var Game =
 //###Component-based game object class###
 class GameObject 
 {
-	constructor(x, y) 
+	constructor(x, y, archetype) 
 	{
 		this.x = x;
 		this.y = y;
+		this.archetype = archetype;
 		this.components = [];
 	}
 	
@@ -70,11 +71,19 @@ function Init()
 	Game.object = document.getElementById('GameWindow');	
 	Game.graphics.init();
 	Game.levels.init();
-	Game.levels.objects.push(new GameObject(0,0));
-	Game.levels.player = Game.levels.objects[0];
-	Game.levels.player.addComponent(new Component_Sprite("Yay"));
-	var TestComponent = Game.levels.player.getComponent(Component_Sprite);
-	alert(TestComponent.sprite);
+	Game.data.init();	
+	Game.levels.player = Game.data.createObject("Player");
+	
+	// Debugging comeponents.
+	//var TestComponent = Game.levels.player.getComponent(Component_Sprite);
+	//TestComponent.sprite="ChangeMe";
+	//var TestComponent2 = Game.levels.player.getComponent(Component_Unit);
+	//TestComponent2.health=5;	
+	//alert(TestComponent.sprite);	
+	//alert(TestComponent2.health);	
+	//alert(Game.data.archetypes.Player.getComponent(Component_Sprite).sprite);
+	//alert(Game.data.archetypes.Player.getComponent(Component_Unit).health);
+	
 	ResizeGameWindow();
 	window.addEventListener("resize", ResizeGameWindow);
 	window.requestAnimationFrame(Loop);
