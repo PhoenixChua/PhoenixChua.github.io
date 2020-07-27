@@ -58,6 +58,10 @@ window.onload = function(){
 	}
 }
 
+function LoadFromHTML() {
+	document.getElementById("Article").innerHTML='<object type="text/html" data="BlogContent/1.html" ></object>';
+}
+
 window.onbeforeunload = function(){
     localStorage.setItem('value', document.getElementById("testinput").value);
 }
